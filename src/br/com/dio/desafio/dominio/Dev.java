@@ -14,7 +14,7 @@ public class Dev {
     public void progredir(){
         Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
         if(conteudo.isPresent()){
-            this.conteudosInscritos.add(conteudo.get());
+            this.conteudosConcluidos.add(conteudo.get());
             this.conteudosInscritos.remove(conteudo.get());
         }else{
             System.out.println("você não está matriculado em nenhum conteúdo!");
@@ -23,10 +23,12 @@ public class Dev {
 
     public double calcularTotalXp(){
 
-        return this.conteudosConcluidos
-                .stream()
-                .mapToDouble(Conteudo::calcularXp)
-                .sum();
+        double sum = 0.0;
+        for (Conteudo conteudosConcluido : conteudosConcluidos) {
+            double next = conteudosConcluido.calcularXp();
+            sum = sum + next;
+        }
+        return sum;
     }
 
     public String getNome(){
@@ -38,9 +40,10 @@ public class Dev {
     public Set<Conteudo> getConteudosInscritos(){
         return conteudosInscritos;
     }
-    public void setConteudosInscritos(){
-        this. conteudosInscritos = conteudosInscritos;
+    public void setConteudosInscritos(Set<Conteudo> conteudosInscritos){
+        this.conteudosInscritos = conteudosInscritos;
     }
+
     public Set<Conteudo> getConteudosConcluidos(){
         return conteudosConcluidos;
     }

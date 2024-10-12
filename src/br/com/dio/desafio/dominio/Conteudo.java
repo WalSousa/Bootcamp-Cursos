@@ -10,6 +10,7 @@ public abstract class Conteudo {
    public String getTitulo() {
       return titulo;
    }
+
    public void setTitulo(String titulo){
       this.titulo = titulo;
    }
